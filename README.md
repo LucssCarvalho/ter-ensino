@@ -1,0 +1,2 @@
+# terEnsino
+A terEnsino é uma plataforma que reúne estudantes, professores, profissionais, e qualquer outro tipo de pessoa que se interesse por ensinar ou aprender algo novo. Através da terEnsino você poderá ser tanto o aluno quando o instrutor, e o melhor, tudo é gratuito!!, gratuito??, SIMM!!, aqui temos pessoas que se voluntariam para ensinar algo a outras pessoas que desejam aprender, desde assuntos de tecnologia até compartilhar pensamentos sobre leituras e muito mais!
