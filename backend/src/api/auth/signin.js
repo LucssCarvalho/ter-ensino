@@ -7,7 +7,9 @@ const validatedInformations = require('./utils/validatedInformations')
 const signin = app => async (req, res) => {
   const { email, password } = req.body
 
-  validatedInformations({ email, password }, res)
+  const errorUser = validatedInformations({ email, password })
+
+  if (errorUser) res.status(400).send(errorUser)
 
   let user = await app.db('users').select('*').where('email', '=', email)
 

@@ -1,13 +1,36 @@
 const { db } = require('./.env')
 
 module.exports = {
-  client: 'postgresql',
-  connection: db,
-  pool: {
-    min: 2,
-    max: 10,
+  production: {
+    client: 'postgresql',
+    connection: db,
+    pool: {
+      min: 2,
+      max: 10,
+    },
+    migrations: {
+      directory: './src/database/migrations',
+    },
+    useNullAsDefault: true,
   },
-  migrations: {
-    directory: './src/database/migrations',
+  development: {
+    client: 'sqlite3',
+    connection: {
+      filename: './src/database/db.sqlite',
+    },
+    migrations: {
+      directory: './src/database/migrations',
+    },
+    useNullAsDefault: true,
+  },
+  test: {
+    client: 'sqlite3',
+    connection: {
+      filename: './src/database/test.sqlite',
+    },
+    migrations: {
+      directory: './src/database/migrations',
+    },
+    useNullAsDefault: true,
   },
 }

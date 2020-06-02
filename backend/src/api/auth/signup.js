@@ -5,11 +5,12 @@ const validatedInformations = require('./utils/validatedInformations')
 const signup = app => async (req, res) => {
   const { name, email, password, confirmPassword } = req.body
 
-  validatedInformations(
+  const errorUser = validatedInformations(
     { name, email, password, confirmPassword },
-    res,
     'signup'
   )
+
+  if (errorUser) return res.status(400).send(errorUser)
 
   const [id] = await app.db('users').select('*').where('email', '=', email)
 

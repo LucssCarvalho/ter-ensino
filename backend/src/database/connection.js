@@ -1,6 +1,17 @@
-const config = require('../../knexfile')
-const knex = require('knex')(config)
+const configKnex = require('../../knexfile')
+const knex = require('knex')
 
-knex.migrate.latest([config])
+const config =
+  process.env.NODE_ENV === 'test'
+    ? configKnex.test
+    : process.env.NODE_ENV === 'development'
+    ? configKnex.development
+    : configKnex.production
 
-module.exports = knex
+const connection = knex(config)
+
+process.env.NODE_ENV === 'test'
+  ? undefined
+  : connection.migrate.latest([config])
+
+module.exports = connection
