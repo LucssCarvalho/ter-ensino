@@ -5,7 +5,7 @@
   "main": "src/loader.js",
   "scripts": {
     "start": "pm2 start src/loader.js --name terEnsino-backend",
-    "test": "cross-env NODE_ENV=test jest",
+    "test": "cross-env NODE_ENV=test jest __test__/integration/auth && jest __test__/integration/user && jest __test__/integration/articles",
     "dev": "cross-env NODE_ENV=development nodemon"
   },
   "keywords": [],

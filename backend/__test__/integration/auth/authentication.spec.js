@@ -17,6 +17,8 @@ describe('Authentication', () => {
     })
   })
 
+  //////////////////Create User////////////////////////
+
   it('should be able to create a new user', () => {
     //Parametro do resquest é o app
     //.post o metodo que queremos usar para requisição
@@ -49,6 +51,8 @@ describe('Authentication', () => {
       )
   })
 
+  //////////////////Login User////////////////////////
+
   it('should be able to login of user', () => {
     return request(app)
       .post('/signup')
@@ -68,6 +72,85 @@ describe('Authentication', () => {
           .then(response =>
             //Expect: é o que eu estou recebendo
             expect(response.body).toHaveProperty('token')
+          )
+      )
+  })
+
+  it('should not be able to login of user', () => {
+    return request(app)
+      .post('/signup')
+      .send({
+        name: 'Jonathan Raphael',
+        email: 'jonathan1@gmail.com',
+        password: 'J@nathan123',
+        confirmPassword: 'J@nathan123',
+      })
+      .then(() =>
+        request(app)
+          .post('/signin')
+          .send({
+            email: 'jonathan1@gmail.com',
+            password: 'J@nathan',
+          })
+          .then(response =>
+            //Expect: é o que eu estou recebendo
+            expect(response.body).toHaveProperty('error')
+          )
+      )
+  })
+
+  //////////////////Validate Token of User////////////////////////
+
+  it('should be able to validate token of user', () => {
+    return request(app)
+      .post('/signup')
+      .send({
+        name: 'Jonathan Raphael',
+        email: 'jonathan1@gmail.com',
+        password: 'J@nathan123',
+        confirmPassword: 'J@nathan123',
+      })
+      .then(() =>
+        request(app)
+          .post('/signin')
+          .send({
+            email: 'jonathan1@gmail.com',
+            password: 'J@nathan123',
+          })
+          .then(response =>
+            request(app)
+              .post('/validateToken')
+              .send({
+                token: response.body.token,
+              })
+              .then(response => expect(response.body.valid).toBe(true))
+          )
+      )
+  })
+
+  it('should not be able to validate token of user', () => {
+    return request(app)
+      .post('/signup')
+      .send({
+        name: 'Jonathan Raphael',
+        email: 'jonathan1@gmail.com',
+        password: 'J@nathan123',
+        confirmPassword: 'J@nathan123',
+      })
+      .then(() =>
+        request(app)
+          .post('/signin')
+          .send({
+            email: 'jonathan1@gmail.com',
+            password: 'J@nathan123',
+          })
+          .then(response =>
+            request(app)
+              .post('/validateToken')
+              .send({
+                token: 'kjshfs8266423gdis8623623gdf728',
+              })
+              .then(response => expect(response.body.valid).toBe(false))
           )
       )
   })

@@ -23,7 +23,7 @@ const signup = app => async (req, res) => {
       .then(() => res.send({ message: 'Cadastro realizado com sucesso' }))
       .catch(err =>
         res.status(500).send({
-          error: 'Algo inesperado ocorreu por favor tente novamente. ',
+          error: 'Algo inesperado ocorreu por favor tente novamente.',
         })
       )
   } else {
