@@ -1,0 +1,74 @@
+//Usado para enviar requisição http
+const request = require('supertest')
+
+const app = require('../../../src/config/app')
+
+describe('Authentication', () => {
+  beforeEach(() => {
+    //desfaz todas as alterações das migrates anteriores
+    //Executa as migrates
+    return app.db.migrate.rollback().then(() => app.db.migrate.latest())
+  })
+
+  afterAll(() => {
+    //Encerra a conexão
+    app.db.destroy().then(() => {
+      return
+    })
+  })
+
+  it('should be able to create a new user', () => {
+    //Parametro do resquest é o app
+    //.post o metodo que queremos usar para requisição
+    //.send: dados que serão enviados na requisição
+    return request(app)
+      .post('/signup')
+      .send({
+        name: 'Jonathan Raphael',
+        email: 'jonathan@gmail.com',
+        password: 'J@nathan123',
+        confirmPassword: 'J@nathan123',
+      })
+      .then(response =>
+        //Expect: é o que eu estou recebendo
+        expect(response.body).toHaveProperty('message')
+      )
+  })
+
+  it('should not be able to create a new user', () => {
+    return request(app)
+      .post('/signup')
+      .send({
+        name: 'Jonathan Raphael',
+        email: 'jonathan@gmail.com',
+        password: 'J@nathan123',
+      })
+      .then(response =>
+        //Expect: é o que eu estou recebendo
+        expect(response.body).toHaveProperty('error')
+      )
+  })
+
+  it('should be able to login of user', () => {
+    return request(app)
+      .post('/signup')
+      .send({
+        name: 'Jonathan Raphael',
+        email: 'jonathan1@gmail.com',
+        password: 'J@nathan123',
+        confirmPassword: 'J@nathan123',
+      })
+      .then(() =>
+        request(app)
+          .post('/signin')
+          .send({
+            email: 'jonathan1@gmail.com',
+            password: 'J@nathan123',
+          })
+          .then(response =>
+            //Expect: é o que eu estou recebendo
+            expect(response.body).toHaveProperty('token')
+          )
+      )
+  })
+})

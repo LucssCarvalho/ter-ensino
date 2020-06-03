@@ -9,15 +9,16 @@ const signin = app => async (req, res) => {
 
   const errorUser = validatedInformations({ email, password })
 
-  if (errorUser) res.status(400).send(errorUser)
+  if (errorUser) return res.status(400).send(errorUser)
 
   let user = await app.db('users').select('*').where('email', '=', email)
 
-  if (!user[0]) res.status(400).send({ error: 'E-mail/Senha inválido' })
+  if (!user[0]) return res.status(400).send({ error: 'E-mail/Senha inválido' })
 
   const passwordMatch = await bcrypt.compare(password, user[0].password)
 
-  if (!passwordMatch) res.status(400).send({ error: 'E-mail/Senha inválido' })
+  if (!passwordMatch)
+    return res.status(400).send({ error: 'E-mail/Senha inválido' })
 
   const payload = {
     id: user[0].id,
@@ -29,7 +30,7 @@ const signin = app => async (req, res) => {
   delete user[0].id
   delete user[0].password
 
-  res.send({ ...user[0], token })
+  return res.send({ ...user[0], token })
 }
 
 module.exports = { signin }
