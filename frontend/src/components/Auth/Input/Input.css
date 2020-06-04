@@ -1,0 +1,22 @@
+.group-input-auth {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  margin: 10px;
+}
+
+.input-auth {
+  background-color: transparent;
+  border: 0;
+  border-bottom: 2px solid #00bc58;
+  font-family: Oswald;
+  font-weight: 400;
+  color: #657786;
+  font-size: 16px;
+}
+
+.group-input-auth label {
+  color: #000;
+  align-self: end;
+  margin-bottom: 10px;
+}

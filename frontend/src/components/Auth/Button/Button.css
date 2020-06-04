@@ -1,0 +1,34 @@
+.group-button-auth {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin: 10px;
+}
+
+.group-button-auth label {
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  transition: filter 0.5s ease;
+}
+.group-button-auth label:hover {
+  filter: brightness(80%);
+}
+
+.button-auth {
+  height: 40px;
+  background-color: #00bc58;
+  border: 0;
+  border-radius: 24px;
+  font-family: Oswald;
+  font-size: 17px;
+  color: #fff;
+  font-weight: 400;
+  cursor: pointer;
+  transition: filter 0.5s ease;
+}
+
+.button-auth:hover {
+  filter: brightness(80%);
+}
