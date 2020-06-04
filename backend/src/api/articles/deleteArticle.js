@@ -3,19 +3,24 @@ const jwt = require('jsonwebtoken')
 const { authSecret } = require('../../../.env')
 
 const deleteArticle = app => async (req, res) => {
-  let userId
+  let userId, tokenValid
 
   if (!req.params.id)
     return res.status(400).send({ error: 'Id do artigo não informado.' })
 
   if (!req.body.token)
-    return res.status(403).send({ error: 'Token não está presente' })
+    return res.status(403).send({ error: 'Usuário não autorizado' })
 
   jwt.verify(req.body.token, authSecret, (err, decode) => {
-    if (err) return (userId = null)
+    if (err) return (tokenValid = false)
 
-    return (userId = decode.id)
+    userId = decode.id
+
+    return (tokenValid = true)
   })
+
+  if (!tokenValid)
+    return res.status(403).send({ error: 'Usuário não autorizado' })
 
   return app.db
     .select('*')

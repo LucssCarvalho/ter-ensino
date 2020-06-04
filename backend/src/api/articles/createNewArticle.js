@@ -6,20 +6,25 @@ const { validateArticle } = require('./util/validateArticle')
 const { formatDate } = require('./util/formatDate')
 
 const createNewArticle = app => async (req, res) => {
-  let userId
+  let userId, tokenValid
 
   const validate = validateArticle({ ...req.body })
 
   if (validate) return res.status(400).send(validate)
 
   if (!req.body.token)
-    return res.status(403).send({ error: 'Token não está presente' })
+    return res.status(403).send({ error: 'Usuário não autorizado' })
 
   jwt.verify(req.body.token, authSecret, (err, decode) => {
-    if (err) return (userId = null)
+    if (err) return (tokenValid = false)
 
-    return (userId = decode.id)
+    userId = decode.id
+
+    return (tokenValid = true)
   })
+
+  if (!tokenValid)
+    return res.status(403).send({ error: 'Usuário não autorizado' })
 
   const article = {
     title: req.body.title,

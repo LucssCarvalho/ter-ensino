@@ -2,13 +2,15 @@ const jwt = require('jsonwebtoken')
 
 const { authSecret } = require('../../../.env')
 
-const validateToken = (req, res) => {
-  const token = req.body.token || null
+const validateToken = (req, res, next) => {
+  if (req.body.token) {
+    jwt.verify(req.body.token, authSecret, (err, decoded) => {
+      if (err) return res.status(403).send({ error: 'Usuário não autorizado' })
 
-  if (token) {
-    jwt.verify(token, authSecret, (err, decoded) => {
-      return res.send({ valid: !err })
+      return next()
     })
+  } else {
+    return res.status(403).send({ error: 'Usuário não autorizado' })
   }
 }
 

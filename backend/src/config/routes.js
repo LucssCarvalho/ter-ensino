@@ -13,14 +13,14 @@ module.exports = app => {
 
   app.post('/signin', signin(app))
 
-  app.post('/validateToken', validateToken)
-
   //Private Api
+  app.get('/articles', getArticles(app))
+
+  app.use(validateToken)
+
   app.put('/user', updatedUserProfile(app))
 
   app.post('/articles', createNewArticle(app))
-
-  app.get('/articles', getArticles(app))
 
   app.put('/articles/:id', updatedArticle(app))
 

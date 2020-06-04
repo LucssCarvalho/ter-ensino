@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken')
 const { authSecret } = require('../../../.env')
 
 const updatedUserProfile = app => async (req, res) => {
-  let userId, updatedUser, updatedError
+  let userId, updatedUser, updatedError, tokenValid
   const userInformation = {}
 
   if (!req.body.name) {
@@ -18,14 +18,19 @@ const updatedUserProfile = app => async (req, res) => {
   if (req.body.about) userInformation.about = req.body.about
 
   if (!req.body.token) {
-    return res.status(503).send({ error: 'Token não está presente' })
+    return res.status(403).send({ error: 'Usuário não autorizado' })
   } else {
     jwt.verify(req.body.token, authSecret, (err, decode) => {
-      if (err) return (userId = null)
+      if (err) return (tokenValid = false)
 
-      return (userId = decode.id)
+      userId = decode.id
+
+      return (tokenValid = true)
     })
   }
+
+  if (!tokenValid)
+    return res.status(403).send({ error: 'Usuário não autorizado' })
 
   await app
     .db('users')
