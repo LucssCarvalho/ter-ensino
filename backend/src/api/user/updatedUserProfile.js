@@ -21,6 +21,8 @@ const updatedUserProfile = app => async (req, res) => {
     return res.status(503).send({ error: 'Token não está presente' })
   } else {
     jwt.verify(req.body.token, authSecret, (err, decode) => {
+      if (err) return (userId = null)
+
       return (userId = decode.id)
     })
   }

@@ -15,7 +15,11 @@ const createNewArticle = app => async (req, res) => {
   if (!req.body.token)
     return res.status(403).send({ error: 'Token não está presente' })
 
-  jwt.verify(req.body.token, authSecret, (err, decode) => (userId = decode.id))
+  jwt.verify(req.body.token, authSecret, (err, decode) => {
+    if (err) return (userId = null)
+
+    return (userId = decode.id)
+  })
 
   const article = {
     title: req.body.title,

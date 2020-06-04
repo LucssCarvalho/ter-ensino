@@ -106,6 +106,7 @@ describe('Articles', () => {
             request(app)
               .post('/articles')
               .send({
+                title: 'Javascript vai mudar o mundo',
                 imageURL:
                   'https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Unofficial_JavaScript_logo_2.svg/1200px-Unofficial_JavaScript_logo_2.svg.png',
                 content:
@@ -118,6 +119,189 @@ describe('Articles', () => {
                   .get('/articles')
                   .then(response =>
                     expect(response.body).toHaveProperty('articles')
+                  )
+              )
+          )
+      )
+  })
+
+  /////////////////Updated Article///////////////////////////
+
+  it('should be able to updated article', () => {
+    return request(app)
+      .post('/signup')
+      .send({
+        name: 'Jonathan Raphael',
+        email: 'jonathan2@gmail.com',
+        password: 'J@nathan123',
+        confirmPassword: 'J@nathan123',
+      })
+      .then(() =>
+        request(app)
+          .post('/signin')
+          .send({
+            email: 'jonathan2@gmail.com',
+            password: 'J@nathan123',
+          })
+          .then(response =>
+            request(app)
+              .post('/articles')
+              .send({
+                title: 'Javascript vai mudar o mundo',
+                imageURL:
+                  'https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Unofficial_JavaScript_logo_2.svg/1200px-Unofficial_JavaScript_logo_2.svg.png',
+                content:
+                  'Javascript e como essa linguagem de programação irá mudar a sua forma de programar, e facilitar seu aprendizado',
+                category: 'Programação',
+                token: response.body.token,
+              })
+              .then(() =>
+                request(app)
+                  .put('/articles/1')
+                  .send({
+                    title: 'VueJS vai mudar o mundo',
+                    imageURL:
+                      'https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Unofficial_JavaScript_logo_2.svg/1200px-Unofficial_JavaScript_logo_2.svg.png',
+                    content:
+                      'VueJS e como essa linguagem de programação irá mudar a sua forma de programar, e facilitar seu aprendizado',
+                    category: 'Programação',
+                    token: response.body.token,
+                  })
+                  .then(response =>
+                    expect(response.body).toHaveProperty('message')
+                  )
+              )
+          )
+      )
+  })
+
+  it('should not be able to updated article', () => {
+    return request(app)
+      .post('/signup')
+      .send({
+        name: 'Jonathan Raphael',
+        email: 'jonathan2@gmail.com',
+        password: 'J@nathan123',
+        confirmPassword: 'J@nathan123',
+      })
+      .then(() =>
+        request(app)
+          .post('/signin')
+          .send({
+            email: 'jonathan2@gmail.com',
+            password: 'J@nathan123',
+          })
+          .then(response =>
+            request(app)
+              .post('/articles')
+              .send({
+                title: 'Javascript vai mudar o mundo',
+                imageURL:
+                  'https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Unofficial_JavaScript_logo_2.svg/1200px-Unofficial_JavaScript_logo_2.svg.png',
+                content:
+                  'Javascript e como essa linguagem de programação irá mudar a sua forma de programar, e facilitar seu aprendizado',
+                category: 'Programação',
+                token: response.body.token,
+              })
+              .then(() =>
+                request(app)
+                  .put('/articles/1')
+                  .send({
+                    title: 'VueJS vai mudar o mundo',
+                    imageURL:
+                      'https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Unofficial_JavaScript_logo_2.svg/1200px-Unofficial_JavaScript_logo_2.svg.png',
+                    content:
+                      'VueJS e como essa linguagem de programação irá mudar a sua forma de programar, e facilitar seu aprendizado',
+                    category: 'Programação',
+                  })
+                  .then(response =>
+                    expect(response.body).toHaveProperty('error')
+                  )
+              )
+          )
+      )
+  })
+
+  /////////////////Delete Article///////////////////////////
+
+  it('should be able to delete article', () => {
+    return request(app)
+      .post('/signup')
+      .send({
+        name: 'Jonathan Raphael',
+        email: 'jonathan3@gmail.com',
+        password: 'J@nathan123',
+        confirmPassword: 'J@nathan123',
+      })
+      .then(() =>
+        request(app)
+          .post('/signin')
+          .send({
+            email: 'jonathan3@gmail.com',
+            password: 'J@nathan123',
+          })
+          .then(response =>
+            request(app)
+              .post('/articles')
+              .send({
+                title: 'Javascript vai mudar o mundo',
+                imageURL:
+                  'https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Unofficial_JavaScript_logo_2.svg/1200px-Unofficial_JavaScript_logo_2.svg.png',
+                content:
+                  'Javascript e como essa linguagem de programação irá mudar a sua forma de programar, e facilitar seu aprendizado',
+                category: 'Programação',
+                token: response.body.token,
+              })
+              .then(() =>
+                request(app)
+                  .delete('/articles/1')
+                  .send({
+                    token: response.body.token,
+                  })
+                  .then(response =>
+                    expect(response.body).toHaveProperty('message')
+                  )
+              )
+          )
+      )
+  })
+
+  it('should not be able to delete article', () => {
+    return request(app)
+      .post('/signup')
+      .send({
+        name: 'Jonathan Raphael',
+        email: 'jonathan3@gmail.com',
+        password: 'J@nathan123',
+        confirmPassword: 'J@nathan123',
+      })
+      .then(() =>
+        request(app)
+          .post('/signin')
+          .send({
+            email: 'jonathan3@gmail.com',
+            password: 'J@nathan123',
+          })
+          .then(response =>
+            request(app)
+              .post('/articles')
+              .send({
+                title: 'Javascript vai mudar o mundo',
+                imageURL:
+                  'https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Unofficial_JavaScript_logo_2.svg/1200px-Unofficial_JavaScript_logo_2.svg.png',
+                content:
+                  'Javascript e como essa linguagem de programação irá mudar a sua forma de programar, e facilitar seu aprendizado',
+                category: 'Programação',
+                token: response.body.token,
+              })
+              .then(() =>
+                request(app)
+                  .delete('/articles/1')
+                  .send({
+                    token: 'jshf732682374gd276egb7d8d324',
+                  })
+                  .then(response =>
+                    expect(response.body).toHaveProperty('error')
                   )
               )
           )
