@@ -13,10 +13,12 @@ const updatedArticle = app => async (req, res) => {
   const validate = validateArticle({ ...req.body })
   if (validate) return res.status(400).send(validate)
 
-  if (!req.body.token)
+  if (!req.headers['authorization'])
     return res.status(403).send({ error: 'Usuário não autorizado' })
 
-  jwt.verify(req.body.token, authSecret, (err, decode) => {
+  const token = req.headers['authorization']
+
+  jwt.verify(token, authSecret, (err, decode) => {
     if (err) return (tokenValid = false)
 
     userId = decode.id

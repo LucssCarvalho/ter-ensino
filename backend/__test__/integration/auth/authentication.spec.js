@@ -120,9 +120,7 @@ describe('Authentication', () => {
           .then(response =>
             request(app)
               .post('/validateToken')
-              .send({
-                token: response.body.token,
-              })
+              .set('Authorization', response.body.token)
               .then(response => expect(response.body.valid).toBe(true))
           )
       )
@@ -147,9 +145,7 @@ describe('Authentication', () => {
           .then(response =>
             request(app)
               .post('/validateToken')
-              .send({
-                token: '4736dhisgfib49324rfd',
-              })
+              // .set('Authorization', response.body.token)
               .then(response => expect(response.body.valid).toBe(false))
           )
       )

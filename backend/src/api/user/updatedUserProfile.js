@@ -17,10 +17,11 @@ const updatedUserProfile = app => async (req, res) => {
   if (req.body.title) userInformation.title = req.body.title
   if (req.body.about) userInformation.about = req.body.about
 
-  if (!req.body.token) {
+  if (!req.headers['authorization']) {
     return res.status(403).send({ error: 'Usuário não autorizado' })
   } else {
-    jwt.verify(req.body.token, authSecret, (err, decode) => {
+    const token = req.headers['authorization']
+    jwt.verify(token, authSecret, (err, decode) => {
       if (err) return (tokenValid = false)
 
       userId = decode.id

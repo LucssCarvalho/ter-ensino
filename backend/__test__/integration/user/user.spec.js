@@ -38,6 +38,7 @@ describe('User', () => {
           .then(response =>
             request(app)
               .put('/user')
+              .set('Authorization', response.body.token)
               .send({
                 name: 'Ana Paula',
                 imageURL:
@@ -45,7 +46,6 @@ describe('User', () => {
                 title: 'Programador Full Stack Node.js',
                 about:
                   'Sou programadora na empresa terEnsino e evangelizador do gitHub',
-                token: response.body.token,
               })
               .then(response => expect(response.body).toHaveProperty('name'))
           )
@@ -71,6 +71,7 @@ describe('User', () => {
           .then(response =>
             request(app)
               .put('/user')
+              // .set('Authorization', response.body.token)
               .send({
                 name: 'Ana Paula',
                 imageURL:
@@ -105,9 +106,7 @@ describe('User', () => {
           .then(response =>
             request(app)
               .get('/user')
-              .send({
-                token: response.body.token,
-              })
+              .set('Authorization', response.body.token)
               .then(response => expect(response.body).toHaveProperty('name'))
           )
       )
@@ -132,9 +131,7 @@ describe('User', () => {
           .then(response =>
             request(app)
               .get('/user')
-              .send({
-                token: 'ksdhufhsufhs76826',
-              })
+              // .set('Authorization', response.body.token)
               .then(response => expect(response.body).toHaveProperty('error'))
           )
       )

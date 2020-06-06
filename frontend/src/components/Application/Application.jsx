@@ -1,11 +1,18 @@
 import React from 'react'
 
-import Menu from './Menu/Menu'
+//Notificações
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+
+import './Application.css'
+
+import Routes from '../../config/routes'
 
 export default props => {
   return (
     <div className='application-main'>
-      <Menu />
+      <Routes />
+      <ToastContainer />
     </div>
   )
 }

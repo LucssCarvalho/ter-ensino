@@ -38,6 +38,7 @@ describe('Articles', () => {
           .then(response =>
             request(app)
               .post('/articles')
+              .set('Authorization', response.body.token)
               .send({
                 title: 'Javascript vai mudar o mundo',
                 imageURL:
@@ -45,7 +46,6 @@ describe('Articles', () => {
                 content:
                   'Javascript e como essa linguagem de programação irá mudar a sua forma de programar, e facilitar seu aprendizado',
                 category: 'Programação',
-                token: response.body.token,
               })
               .then(response => expect(response.body).toHaveProperty('message'))
           )
@@ -71,13 +71,14 @@ describe('Articles', () => {
           .then(response =>
             request(app)
               .post('/articles')
+              .set('Authorization', response.body.token)
               .send({
+                // title: 'Javascript vai mudar o mundo',
                 imageURL:
                   'https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Unofficial_JavaScript_logo_2.svg/1200px-Unofficial_JavaScript_logo_2.svg.png',
                 content:
                   'Javascript e como essa linguagem de programação irá mudar a sua forma de programar, e facilitar seu aprendizado',
                 category: 'Programação',
-                token: response.body.token,
               })
               .then(response => expect(response.body).toHaveProperty('error'))
           )
@@ -104,23 +105,36 @@ describe('Articles', () => {
           })
           .then(response =>
             request(app)
-              .post('/articles')
-              .send({
-                title: 'Javascript vai mudar o mundo',
-                imageURL:
-                  'https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Unofficial_JavaScript_logo_2.svg/1200px-Unofficial_JavaScript_logo_2.svg.png',
-                content:
-                  'Javascript e como essa linguagem de programação irá mudar a sua forma de programar, e facilitar seu aprendizado',
-                category: 'Programação',
-                token: response.body.token,
-              })
-              .then(() =>
-                request(app)
-                  .get('/articles')
-                  .then(response =>
-                    expect(response.body).toHaveProperty('articles')
-                  )
+              .get('/articles')
+              .set('Authorization', response.body.token)
+              .then(response =>
+                expect(response.body).toHaveProperty('articles')
               )
+          )
+      )
+  })
+
+  it('should not be able to get all articles', () => {
+    return request(app)
+      .post('/signup')
+      .send({
+        name: 'Jonathan Raphael',
+        email: 'jonathan1@gmail.com',
+        password: 'J@nathan123',
+        confirmPassword: 'J@nathan123',
+      })
+      .then(() =>
+        request(app)
+          .post('/signin')
+          .send({
+            email: 'jonathan1@gmail.com',
+            password: 'J@nathan123',
+          })
+          .then(response =>
+            request(app)
+              .get('/articles')
+              // .set('Authorization', response.body.token)
+              .then(response => expect(response.body).toHaveProperty('error'))
           )
       )
   })
@@ -146,6 +160,7 @@ describe('Articles', () => {
           .then(response =>
             request(app)
               .post('/articles')
+              .set('Authorization', response.body.token)
               .send({
                 title: 'Javascript vai mudar o mundo',
                 imageURL:
@@ -153,11 +168,11 @@ describe('Articles', () => {
                 content:
                   'Javascript e como essa linguagem de programação irá mudar a sua forma de programar, e facilitar seu aprendizado',
                 category: 'Programação',
-                token: response.body.token,
               })
               .then(() =>
                 request(app)
                   .put('/articles/1')
+                  .set('Authorization', response.body.token)
                   .send({
                     title: 'VueJS vai mudar o mundo',
                     imageURL:
@@ -165,7 +180,6 @@ describe('Articles', () => {
                     content:
                       'VueJS e como essa linguagem de programação irá mudar a sua forma de programar, e facilitar seu aprendizado',
                     category: 'Programação',
-                    token: response.body.token,
                   })
                   .then(response =>
                     expect(response.body).toHaveProperty('message')
@@ -194,6 +208,7 @@ describe('Articles', () => {
           .then(response =>
             request(app)
               .post('/articles')
+              .set('Authorization', response.body.token)
               .send({
                 title: 'Javascript vai mudar o mundo',
                 imageURL:
@@ -201,11 +216,11 @@ describe('Articles', () => {
                 content:
                   'Javascript e como essa linguagem de programação irá mudar a sua forma de programar, e facilitar seu aprendizado',
                 category: 'Programação',
-                token: response.body.token,
               })
               .then(() =>
                 request(app)
                   .put('/articles/1')
+                  // .set('Authorization', response.body.token)
                   .send({
                     title: 'VueJS vai mudar o mundo',
                     imageURL:
@@ -243,6 +258,7 @@ describe('Articles', () => {
           .then(response =>
             request(app)
               .post('/articles')
+              .set('Authorization', response.body.token)
               .send({
                 title: 'Javascript vai mudar o mundo',
                 imageURL:
@@ -250,14 +266,11 @@ describe('Articles', () => {
                 content:
                   'Javascript e como essa linguagem de programação irá mudar a sua forma de programar, e facilitar seu aprendizado',
                 category: 'Programação',
-                token: response.body.token,
               })
               .then(() =>
                 request(app)
                   .delete('/articles/1')
-                  .send({
-                    token: response.body.token,
-                  })
+                  .set('Authorization', response.body.token)
                   .then(response =>
                     expect(response.body).toHaveProperty('message')
                   )
@@ -285,6 +298,7 @@ describe('Articles', () => {
           .then(response =>
             request(app)
               .post('/articles')
+              .set('Authorization', response.body.token)
               .send({
                 title: 'Javascript vai mudar o mundo',
                 imageURL:
@@ -292,14 +306,11 @@ describe('Articles', () => {
                 content:
                   'Javascript e como essa linguagem de programação irá mudar a sua forma de programar, e facilitar seu aprendizado',
                 category: 'Programação',
-                token: response.body.token,
               })
               .then(() =>
                 request(app)
                   .delete('/articles/1')
-                  .send({
-                    token: 'jshf732682374gd276egb7d8d324',
-                  })
+                  // .set('Authorization', response.body.token)
                   .then(response =>
                     expect(response.body).toHaveProperty('error')
                   )

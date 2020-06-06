@@ -27,10 +27,7 @@ const signin = app => async (req, res) => {
 
   const token = jwt.sign(payload, authSecret, { expiresIn: '7d' })
 
-  delete user[0].id
-  delete user[0].password
-
-  return res.send({ ...user[0], token })
+  return res.send({ token })
 }
 
 module.exports = { signin }
