@@ -98,4 +98,60 @@ describe('Authentication', () => {
           )
       )
   })
+
+  //////////////////Validate Token////////////////////////
+
+  it('should be able to validate token', () => {
+    return request(app)
+      .post('/signup')
+      .send({
+        name: 'Jonathan Raphael',
+        email: 'jonathan1@gmail.com',
+        password: 'J@nathan123',
+        confirmPassword: 'J@nathan123',
+      })
+      .then(() =>
+        request(app)
+          .post('/signin')
+          .send({
+            email: 'jonathan1@gmail.com',
+            password: 'J@nathan123',
+          })
+          .then(response =>
+            request(app)
+              .post('/validateToken')
+              .send({
+                token: response.body.token,
+              })
+              .then(response => expect(response.body.valid).toBe(true))
+          )
+      )
+  })
+
+  it('should not be able to validate token', () => {
+    return request(app)
+      .post('/signup')
+      .send({
+        name: 'Jonathan Raphael',
+        email: 'jonathan1@gmail.com',
+        password: 'J@nathan123',
+        confirmPassword: 'J@nathan123',
+      })
+      .then(() =>
+        request(app)
+          .post('/signin')
+          .send({
+            email: 'jonathan1@gmail.com',
+            password: 'J@nathan123',
+          })
+          .then(response =>
+            request(app)
+              .post('/validateToken')
+              .send({
+                token: '4736dhisgfib49324rfd',
+              })
+              .then(response => expect(response.body.valid).toBe(false))
+          )
+      )
+  })
 })

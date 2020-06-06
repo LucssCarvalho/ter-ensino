@@ -83,4 +83,60 @@ describe('User', () => {
           )
       )
   })
+
+  ///////////////Get User/////////////////////////
+
+  it('should be able to get user', () => {
+    return request(app)
+      .post('/signup')
+      .send({
+        name: 'Jonathan Raphael',
+        email: 'jonathan1@gmail.com',
+        password: 'J@nathan123',
+        confirmPassword: 'J@nathan123',
+      })
+      .then(() =>
+        request(app)
+          .post('/signin')
+          .send({
+            email: 'jonathan1@gmail.com',
+            password: 'J@nathan123',
+          })
+          .then(response =>
+            request(app)
+              .get('/user')
+              .send({
+                token: response.body.token,
+              })
+              .then(response => expect(response.body).toHaveProperty('name'))
+          )
+      )
+  })
+
+  it('should not be able to get user', () => {
+    return request(app)
+      .post('/signup')
+      .send({
+        name: 'Jonathan Raphael',
+        email: 'jonathan1@gmail.com',
+        password: 'J@nathan123',
+        confirmPassword: 'J@nathan123',
+      })
+      .then(() =>
+        request(app)
+          .post('/signin')
+          .send({
+            email: 'jonathan1@gmail.com',
+            password: 'J@nathan123',
+          })
+          .then(response =>
+            request(app)
+              .get('/user')
+              .send({
+                token: 'ksdhufhsufhs76826',
+              })
+              .then(response => expect(response.body).toHaveProperty('error'))
+          )
+      )
+  })
 })

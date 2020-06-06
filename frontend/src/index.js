@@ -4,8 +4,19 @@ import * as serviceWorker from './serviceWorker'
 
 import './global.css'
 
+import { Provider } from 'react-redux'
+
 import App from './pages/App'
 
-ReactDOM.render(<App />, document.getElementById('root'))
+import configStore from './store/storeConfig'
+
+const store = configStore()
+
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('root')
+)
 
 serviceWorker.unregister()
