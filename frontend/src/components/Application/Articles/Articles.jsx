@@ -10,32 +10,41 @@ import Search from './Search/Search'
 import Categories from './Categories/Categories'
 
 export default props => {
-  const [filterSearch, setFilterSearch] = useState('')
-  const [filterRecents, setFilterRecents] = useState(true)
-
   const dispatch = useDispatch()
 
-  const articles = useSelector(store => store.articles.data)
+  const articles = useSelector(store => store.articles)
+
+  const [filterSearch, setFilterSearch] = useState('')
+  const [filterRecents, setFilterRecents] = useState(true)
+  const [filterCategory, setFilterCategory] = useState(articles.categories[0])
 
   useEffect(() => {
     const action = updatedArticles()
     dispatch(action)
   }, [dispatch])
 
-  const renderArticles = (articles, filter, recents) => {
+  const renderArticles = (articles, filter, recents, category) => {
+    let articlesCategory = [...articles]
+
+    if (category.length !== 0) {
+      articlesCategory = articlesCategory.filter(
+        article => article.category === category
+      )
+    }
+
     if (filter.length === 0) {
       if (recents) {
-        return articles.map(article => (
+        return articlesCategory.map(article => (
           <Article key={article.id} article={article} />
         ))
       } else {
-        const oldFirst = [...articles]
+        const oldFirst = [...articlesCategory]
         return oldFirst
           .reverse()
           .map(article => <Article key={article.id} article={article} />)
       }
     } else {
-      const artFilter = articles.filter(
+      const artFilter = articlesCategory.filter(
         article =>
           article.content.toLowerCase().includes(filter.toLowerCase()) ||
           article.title.toLowerCase().includes(filter.toLowerCase())
@@ -48,14 +57,24 @@ export default props => {
 
   return (
     <section className='container-articles'>
-      <Categories />
+      <Categories
+        categoryActive={filterCategory}
+        categories={articles.categories}
+        handleOnClick={setFilterCategory}
+      />
       <Search
         value={filterSearch}
+        placeholder='Buscar Ensinamentos'
         handleOnChange={setFilterSearch}
         onClickFilter={setFilterRecents}
         filterRecents={filterRecents}
       />
-      {renderArticles(articles, filterSearch, filterRecents)}
+      {renderArticles(
+        articles.data,
+        filterSearch,
+        filterRecents,
+        filterCategory
+      )}
     </section>
   )
 }

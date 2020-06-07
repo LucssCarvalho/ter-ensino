@@ -5,6 +5,16 @@ import { UPDATED_ARTICLES } from '../actions/actionsType'
 
 const INITIAL_STATE = {
   data: [],
+  categories: [
+    'Programação',
+    'Leitura',
+    'Excel',
+    'Hábitos',
+    'Esportes',
+    'Biologia',
+    'Historia',
+    'Matemática',
+  ],
 }
 
 export const articlesReducer = (state = INITIAL_STATE, action) => {

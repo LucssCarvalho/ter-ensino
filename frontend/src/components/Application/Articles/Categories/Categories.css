@@ -1,0 +1,42 @@
+.container-categories {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  height: 50px;
+  overflow: hidden;
+  transition: all 0.5s ease;
+  margin-top: 3px;
+}
+
+.group-itens-categories {
+  width: 90%;
+}
+
+.category-item {
+  background-color: transparent;
+  border: 0px;
+  font-family: Oswald;
+  font-size: 18px;
+  color: #657786;
+  padding: 10px 20px;
+  width: 25%;
+  transition: color 0.5s ease;
+  cursor: pointer;
+}
+
+.category-item:hover {
+  color: #00bc58;
+}
+
+.active-category {
+  border-bottom: 3px solid #00bc58;
+  color: #00bc58;
+}
+
+.icon-drop {
+  position: absolute;
+  top: 16px;
+  margin-left: 47%;
+  cursor: pointer;
+}

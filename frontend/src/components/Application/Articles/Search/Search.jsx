@@ -4,7 +4,13 @@ import { FaSearch } from 'react-icons/fa'
 import './Search.css'
 
 export default props => {
-  const { value, filterRecents, handleOnChange, onClickFilter } = props
+  const {
+    value,
+    placeholder,
+    filterRecents,
+    handleOnChange,
+    onClickFilter,
+  } = props
   return (
     <div className='container-search'>
       <span className='search-articles'>
@@ -12,6 +18,7 @@ export default props => {
         <input
           className='bar-search'
           type='text'
+          placeholder={placeholder}
           value={value}
           onChange={e => handleOnChange(e.target.value)}
         />
