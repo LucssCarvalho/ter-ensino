@@ -11,7 +11,8 @@ export const signin = user => {
 }
 
 export const validateToken = token => {
-  const response = api.post('/validateToken', { token: token })
+  api.defaults.headers.common['authorization'] = token
+  const response = api.post('/validateToken')
   return {
     type: VALIDATE_TOKEN,
     payload: response,
