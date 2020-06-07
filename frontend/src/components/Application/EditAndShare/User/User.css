@@ -1,0 +1,15 @@
+.container-user {
+  display: flex;
+}
+
+.image-user {
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  background-image: url(../../../../assets/img_default_profile.jpg);
+  height: 50px;
+  width: 50px;
+  margin-right: 10px;
+  border: 0;
+  border-radius: 50%;
+}

@@ -27,7 +27,7 @@ export default props => {
   return (
     <section className='container-menu'>
       <div className='menu-app'>
-        <h1 className='logo-terEnsino'>#terEnsino</h1>
+        <h1 className='logo-terEnsino-menu'>#terEnsino</h1>
         <Link
           className={`menu-item ${itemSelect ? 'select-item' : ''}`}
           onClick={() => handleSelectItem(true)}

@@ -1,4 +1,10 @@
 .container-edit-and-share {
   flex: 1;
-  background-color: green;
+}
+
+.edit-and-share {
+  background-color: #e6ecf0;
+  border: 0;
+  border-radius: 15px;
+  margin: 20px 10px;
 }
