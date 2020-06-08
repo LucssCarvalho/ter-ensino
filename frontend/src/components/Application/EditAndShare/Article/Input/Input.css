@@ -1,0 +1,23 @@
+.group-input-edit-share-article {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.group-input-edit-share-article label {
+  font-size: 20px;
+  color: #000;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+.group-input-edit-share-article input {
+  background-color: transparent;
+  border: 0;
+  border-bottom: 2px solid #00bc58;
+  font-size: 18px;
+  font-family: Oswald;
+  color: #657786;
+  width: 100%;
+  margin-bottom: 10px;
+}

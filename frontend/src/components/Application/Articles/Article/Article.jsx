@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import './Article.css'
 
 export default props => {
   const { id, title, imageURL, content, dateArticle, author } = props.article
+  const [showFullArticle, setShowFullArticle] = useState(false)
 
   return (
     <div className='container-article' key={id}>
@@ -37,7 +38,19 @@ export default props => {
               : {}
           }
         />
-        <p className='content-text'>{content}</p>
+        <p
+          className={`content-text ${
+            showFullArticle ? 'show-full-article' : ''
+          }`}
+        >
+          {content}
+        </p>
+        <span
+          onClick={() => setShowFullArticle(!showFullArticle)}
+          className='label-show-full-article'
+        >
+          {!showFullArticle ? 'Continuar leitura +' : 'Recolher artigo -'}
+        </span>
       </div>
     </div>
   )

@@ -4,7 +4,6 @@ import './User.css'
 
 export default props => {
   const { user } = props
-  console.log(user)
   return (
     <div className='container-user'>
       <div

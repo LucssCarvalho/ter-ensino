@@ -1,5 +1,12 @@
 .container-user {
   display: flex;
+  border: 0;
+  margin: 10px;
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 25px;
+  flex-wrap: wrap;
+  overflow: hidden;
 }
 
 .image-user {
@@ -12,4 +19,8 @@
   margin-right: 10px;
   border: 0;
   border-radius: 50%;
+}
+
+.name-user {
+  color: #000;
 }

@@ -6,6 +6,7 @@ import './EditAndShare.css'
 import { getUser, updatedUser } from '../../../store/actions/actionsUser'
 
 import User from './User/User'
+import Article from './Article/Article'
 
 export default props => {
   const dispatch = useDispatch()
@@ -21,10 +22,25 @@ export default props => {
   return (
     <section className='container-edit-and-share'>
       <div className='edit-and-share'>
-        <h1>Compartilhe com a comunidade:</h1>
-        <h1>Editando ensinamentos:</h1>
-        {user.profileMode && <h1>Editando informações do perfil:</h1>}
+        {!articles.modeEdit && (
+          <h1 className='title-edit-and-share'>
+            Compartilhe com a comunidade:
+          </h1>
+        )}
+        {articles.modeEdit && (
+          <h1 className='title-edit-and-share'>Editando ensinamentos:</h1>
+        )}
+        {user.profileMode && (
+          <h1 className='title-edit-and-share'>
+            Editando informações do perfil:
+          </h1>
+        )}
         <User user={user.data} />
+        <Article
+          articles={articles}
+          articleId={articles.articleEdit}
+          modeEditArticle={articles.modeEdit}
+        />
       </div>
     </section>
   )

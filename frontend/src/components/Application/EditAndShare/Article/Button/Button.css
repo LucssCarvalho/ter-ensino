@@ -1,0 +1,17 @@
+.button-edit-and-share-article {
+  background-color: transparent;
+  border: 1px solid #00bc58;
+  border-radius: 25px;
+  height: 30px;
+  padding: 0px 20px;
+  font-size: 18px;
+  font-family: Oswald;
+  color: #00bc58;
+  cursor: pointer;
+  flex: 1;
+  transition: filter 0.5s ease;
+}
+
+.button-edit-and-share-article:hover {
+  filter: brightness(80%);
+}

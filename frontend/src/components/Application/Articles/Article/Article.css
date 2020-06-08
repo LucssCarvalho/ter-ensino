@@ -55,11 +55,29 @@
   background-position: center center;
   background-size: cover;
   background-image: url(../../../../assets/article_default.jpg);
-  height: 300px;
+  height: 250px;
   width: 100%;
 }
 
 .content-text {
   margin: 20px;
   color: #424447;
+  font-size: 17px;
+  height: 50px;
+  overflow: hidden;
+}
+
+.show-full-article {
+  height: auto;
+}
+
+.label-show-full-article {
+  margin-left: 80%;
+  margin-bottom: 20px;
+  cursor: pointer;
+  transition: filter 0.5s ease;
+}
+
+.label-show-full-article:hover {
+  filter: brightness(80%);
 }

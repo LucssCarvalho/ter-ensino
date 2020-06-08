@@ -1,4 +1,4 @@
-import { UPDATED_ARTICLES } from './actionsType'
+import { UPDATED_ARTICLES, EDIT_ARTICLE } from './actionsType'
 
 import api from '../../services/api'
 
@@ -8,5 +8,15 @@ export const updatedArticles = () => {
   return {
     type: UPDATED_ARTICLES,
     payload: response,
+  }
+}
+
+export const setModeEditArticle = (value, id = null) => {
+  return {
+    type: EDIT_ARTICLE,
+    payload: {
+      modeValue: value,
+      articleId: id,
+    },
   }
 }

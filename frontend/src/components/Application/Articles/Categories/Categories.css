@@ -7,6 +7,7 @@
   overflow: hidden;
   transition: all 0.5s ease;
   margin-top: 3px;
+  position: relative;
 }
 
 .group-itens-categories {
@@ -38,7 +39,7 @@
 .icon-drop {
   position: absolute;
   top: 16px;
-  margin-left: 47%;
+  margin-left: 93%;
   color: #657786;
   cursor: pointer;
 }

@@ -1,7 +1,7 @@
 //Notificações
 import { toast } from 'react-toastify'
 
-import { UPDATED_ARTICLES } from '../actions/actionsType'
+import { UPDATED_ARTICLES, EDIT_ARTICLE } from '../actions/actionsType'
 
 const INITIAL_STATE = {
   data: [],
@@ -15,6 +15,8 @@ const INITIAL_STATE = {
     'Historia',
     'Matemática',
   ],
+  modeEdit: false,
+  articleEdit: null,
 }
 
 export const articlesReducer = (state = INITIAL_STATE, action) => {
@@ -25,6 +27,12 @@ export const articlesReducer = (state = INITIAL_STATE, action) => {
       }
       toast.error(action.payload.response.data.error)
       return state
+    case EDIT_ARTICLE:
+      return {
+        ...state,
+        modeEdit: action.payload.modeValue,
+        articleEdit: action.payload.articleId,
+      }
     default:
       return state
   }
