@@ -1,51 +1,88 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { toast } from 'react-toastify'
 
 import './Profile.css'
 
+import api from '../../../services/api'
+
+import { getUser, profileMode } from '../../../store/actions/actionsUser'
+import {
+  updatedArticles,
+  setModeEditArticle,
+} from '../../../store/actions/actionsArticles'
+
+import InformationsUser from './InformationsUser/InformationsUser'
+import ArticlesUser from './ArticlesUser/ArticlesUser'
+
 export default props => {
+  const dispatch = useDispatch()
+
   const user = useSelector(store => store.user)
   const articles = useSelector(store => store.articles)
+
+  useEffect(() => {
+    const actionGetUser = getUser()
+    dispatch(actionGetUser)
+
+    const actionGetArticles = updatedArticles()
+    dispatch(actionGetArticles)
+  }, [dispatch])
+
+  const editProfile = () => {
+    const actionModeEditProfile = profileMode(true)
+    dispatch(actionModeEditProfile)
+  }
+
+  const editArticle = id => {
+    const actionModeEditArticle = setModeEditArticle(true, id)
+    dispatch(actionModeEditArticle)
+  }
+
+  const deleteArticle = async id => {
+    if (id) {
+      const response = await api.delete(`/articles/${id ? id : ''}`)
+
+      if (response.data.error) toast.error(response.data.error)
+
+      const actionGetArticles = updatedArticles()
+      dispatch(actionGetArticles)
+
+      return toast.success(response.data.message)
+    }
+  }
+
+  const filterArticlesUser = (articles, user, count = false) => {
+    let artCopy = [...articles]
+    if (artCopy.length !== 0) {
+      artCopy = artCopy.filter(article => article.author.id === user.id)
+
+      if (count) return artCopy.length
+
+      return artCopy
+    }
+
+    if (count) return 0
+
+    return
+  }
 
   return (
     <section className='container-profile'>
       <h1 className='header-profile-title'>{`Informações sobre ${user.data.name}`}</h1>
-      <div className='profile-informations'>
-        <div className='background-image-profile'></div>
-        <div
-          className='image-user-profile'
-          style={
-            user.data.imageURL !== null
-              ? { backgroundImage: `url(${user.data.imageURL})` }
-              : {}
-          }
-        ></div>
-        <button className='button-edit-profile-user'>Editar perfil</button>
-        <p>{user.data.name}</p>
-        <p>
-          {user.data.title !== null
-            ? user.data.title
-            : 'Aprendiz em tempo integral'}
-        </p>
-        <p>
-          {user.data.about !== null
-            ? user.data.about
-            : 'Compartilhe um pouco sobre você :)'}
-        </p>
-        <label>{`Sobre ${user.data.name}`}</label>
-        <div className='count-articles-profile'>
-          {/* <p>
-            <span>
-              {articles.data.reduce((total, article) => {
-                console.log(article)
-                if (article.author.id === user.data.id) return total + 1
-                return total
-              }, 0)}
-            </span>{' '}
-            Ensinamentos compartilhados
-          </p> */}
-        </div>
-      </div>
+      <InformationsUser
+        user={user}
+        articles={articles}
+        onClickEditProfile={editProfile}
+        filterArticlesUser={filterArticlesUser}
+      />
+      <ArticlesUser
+        articles={articles}
+        user={user}
+        onClickEditArticle={editArticle}
+        onClickDeleteArticle={deleteArticle}
+        filterArticlesUser={filterArticlesUser}
+      />
     </section>
   )
 }

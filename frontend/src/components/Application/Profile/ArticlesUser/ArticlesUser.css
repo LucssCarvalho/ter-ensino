@@ -1,0 +1,89 @@
+.profile-user-articles {
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+}
+
+.title-profile-user-article {
+  font-weight: 400;
+  color: #00bc58;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border: 0;
+  border-bottom: 2px solid #00bc58;
+}
+
+.article-user-item {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  border: 0;
+  border-bottom: 1px solid #e6ecf0;
+}
+
+.article-informations-and-user {
+  display: flex;
+}
+
+.author-and-date-article {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.date-article-profile-user {
+  margin-left: 20px;
+}
+
+.title-article-user-profile {
+  font-size: 20px;
+  color: #000;
+}
+
+.article-image-article-user {
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  background-image: url(../../../../assets/article_default.jpg);
+  height: 80px;
+  width: 80px;
+  margin-right: 10px;
+  border: 0;
+}
+
+.article-item-buttons {
+  display: flex;
+  flex-direction: column;
+}
+
+.edit-button-article,
+.delete-button-article {
+  background-color: transparent;
+  font-family: Oswald;
+  font-size: 15px;
+  flex: 1;
+  width: 100px;
+  cursor: pointer;
+  transition: filter 0.5s ease;
+}
+
+.edit-button-article {
+  border: 1px solid #657786;
+  background-color: #6577862d;
+  color: #657786;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.delete-button-article {
+  border: 1px solid #c50000;
+  background-color: #c500002d;
+  color: #c50000;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.edit-button-article:hover,
+.delete-button-article:hover {
+  filter: brightness(80%);
+}

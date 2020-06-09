@@ -17,7 +17,7 @@ export const userReducer = (state = INITIAL_STATE, action) => {
       toast.error(action.payload.response.data.error)
       return state
     case PROFILE_MODE:
-      return { ...state, profileMode: action.payload.data }
+      return { ...state, profileMode: action.payload }
     default:
       return state
   }
