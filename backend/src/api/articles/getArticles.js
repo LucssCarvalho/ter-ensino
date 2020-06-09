@@ -26,7 +26,11 @@ const getArticles = app => async (req, res) => {
 
   const articles = listArticles.map(article => {
     const author = listUsers.filter(user => user.id === article.userId)
-    article.author = { name: author[0].name, imageURL: author[0].imageURL }
+    article.author = {
+      id: author[0].id,
+      name: author[0].name,
+      imageURL: author[0].imageURL,
+    }
     article.dateArticle = formatDateStr(article.createAt)
     delete article.userId
 

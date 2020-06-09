@@ -5,15 +5,3 @@
   height: 100vh;
   overflow: scroll;
 }
-
-::-webkit-scrollbar-track {
-  background-color: #f4f4f4;
-}
-::-webkit-scrollbar {
-  width: 6px;
-  background-color: #f4f4f4;
-}
-::-webkit-scrollbar-thumb {
-  border-radius: 10px;
-  background: #dad7d7;
-}

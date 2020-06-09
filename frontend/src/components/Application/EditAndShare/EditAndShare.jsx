@@ -3,10 +3,11 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import './EditAndShare.css'
 
-import { getUser, updatedUser } from '../../../store/actions/actionsUser'
+import { getUser } from '../../../store/actions/actionsUser'
 
 import User from './User/User'
 import Article from './Article/Article'
+import Profile from './Profile/Profile'
 
 export default props => {
   const dispatch = useDispatch()
@@ -22,12 +23,10 @@ export default props => {
   return (
     <section className='container-edit-and-share'>
       <div className='edit-and-share'>
-        {!articles.modeEdit && (
-          <h1 className='title-edit-and-share'>
-            Compartilhe com a comunidade:
-          </h1>
+        {!user.profileMode && !articles.modeEdit && (
+          <h1 className='title-edit-and-share'>Compartilhe conhecimento:</h1>
         )}
-        {articles.modeEdit && (
+        {!user.profileMode && articles.modeEdit && (
           <h1 className='title-edit-and-share'>Editando ensinamentos:</h1>
         )}
         {user.profileMode && (
@@ -36,11 +35,14 @@ export default props => {
           </h1>
         )}
         <User user={user.data} />
-        <Article
-          articles={articles}
-          articleId={articles.articleEdit}
-          modeEditArticle={articles.modeEdit}
-        />
+        {!user.profileMode && (
+          <Article
+            articles={articles}
+            articleId={articles.articleEdit}
+            modeEditArticle={articles.modeEdit}
+          />
+        )}
+        {user.profileMode && <Profile user={user.data} />}
       </div>
     </section>
   )

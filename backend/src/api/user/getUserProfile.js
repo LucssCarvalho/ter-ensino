@@ -33,7 +33,6 @@ const getUserProfile = app => async (req, res) => {
       .status(500)
       .send({ error: 'Algo inesperado ocorreu por favor tente novamente.' })
 
-  delete userProfile.id
   delete userProfile.password
 
   return res.send({ ...userProfile })
