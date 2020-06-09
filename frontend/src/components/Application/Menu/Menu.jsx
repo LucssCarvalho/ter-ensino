@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { Link, useHistory } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { FiHome, FiUser } from 'react-icons/fi'
 
 import './Menu.css'
@@ -9,14 +9,12 @@ import { validateToken } from '../../../store/actions/actionsAuth'
 
 export default props => {
   const dispatch = useDispatch()
-  const history = useHistory()
 
   const [itemSelect, setItemSelect] = useState(true)
 
   const handleLogout = () => {
     localStorage.removeItem('userToken')
     const action = validateToken()
-    history.push('/')
     dispatch(action)
   }
 
@@ -47,6 +45,17 @@ export default props => {
         <button onClick={handleLogout} className='button-logout'>
           Sair
         </button>
+
+        <div className='menu-development-credits'>
+          <p className='thank-you'>Obrigado por participar!</p>
+          <p className='development'>
+            Desenvolvido com{' '}
+            <span role='img' aria-label='sheep'>
+              💚
+            </span>{' '}
+            por terEnsino © 2020.
+          </p>
+        </div>
       </div>
     </section>
   )

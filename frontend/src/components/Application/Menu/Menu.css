@@ -62,3 +62,24 @@
 .button-logout:hover {
   filter: brightness(80%);
 }
+
+.menu-development-credits {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.thank-you {
+  font-size: 20px;
+  color: #000;
+  margin-bottom: 5px;
+}
+
+.development {
+  font-size: 14px;
+}
+
+.icon-heart {
+  color: #00bc58;
+}
