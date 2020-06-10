@@ -1,7 +1,5 @@
 const jwt = require('jsonwebtoken')
 
-const { authSecret } = require('../../../.env')
-
 const updatedUserProfile = app => async (req, res) => {
   let userId, updatedUser, updatedError, tokenValid
   const userInformation = {}
@@ -21,7 +19,7 @@ const updatedUserProfile = app => async (req, res) => {
     return res.status(403).send({ error: 'Usuário não autorizado' })
   } else {
     const token = req.headers['authorization']
-    jwt.verify(token, authSecret, (err, decode) => {
+    jwt.verify(token, process.env.AUTH_SECRET, (err, decode) => {
       if (err) return (tokenValid = false)
 
       userId = decode.id

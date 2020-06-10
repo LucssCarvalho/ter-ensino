@@ -1,7 +1,5 @@
 const jwt = require('jsonwebtoken')
 
-const { authSecret } = require('../../../.env')
-
 const deleteArticle = app => async (req, res) => {
   let userId, tokenValid
 
@@ -13,7 +11,7 @@ const deleteArticle = app => async (req, res) => {
 
   const token = req.headers['authorization']
 
-  jwt.verify(token, authSecret, (err, decode) => {
+  jwt.verify(token, process.env.AUTH_SECRET, (err, decode) => {
     if (err) return (tokenValid = false)
 
     userId = decode.id

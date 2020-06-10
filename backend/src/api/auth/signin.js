@@ -1,7 +1,6 @@
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 
-const { authSecret } = require('../../../.env')
 const validatedInformations = require('./utils/validatedInformations')
 
 const signin = app => async (req, res) => {
@@ -25,7 +24,7 @@ const signin = app => async (req, res) => {
     email: user[0].email,
   }
 
-  const token = jwt.sign(payload, authSecret, { expiresIn: '7d' })
+  const token = jwt.sign(payload, process.env.AUTH_SECRET, { expiresIn: '7d' })
 
   return res.send({ token })
 }

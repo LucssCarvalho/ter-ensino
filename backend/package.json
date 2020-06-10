@@ -4,7 +4,7 @@
   "description": "",
   "main": "src/loader.js",
   "scripts": {
-    "start": "pm2 start src/loader.js --name terEnsino-backend",
+    "start": "node src/loader.js",
     "test": "cross-env NODE_ENV=test jest __test__/integration/auth && jest __test__/integration/user && jest __test__/integration/articles",
     "dev": "cross-env NODE_ENV=development nodemon"
   },
@@ -15,14 +15,14 @@
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
-    "cross-env": "^7.0.2",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "knex": "^0.21.1",
-    "pg": "^8.2.1",
-    "pm2": "^4.4.0"
+    "pg": "^8.2.1"
   },
   "devDependencies": {
+    "cross-env": "^7.0.2",
     "jest": "^26.0.1",
     "nodemon": "^2.0.4",
     "sqlite3": "^4.2.0",

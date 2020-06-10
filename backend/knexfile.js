@@ -1,13 +1,7 @@
-const { db } = require('./.env')
-
 module.exports = {
   production: {
     client: 'postgresql',
-    connection: db,
-    pool: {
-      min: 2,
-      max: 10,
-    },
+    connection: process.env.DATABASE_URL || process.env.DATABASE_LOCAL,
     migrations: {
       directory: './src/database/migrations',
     },
