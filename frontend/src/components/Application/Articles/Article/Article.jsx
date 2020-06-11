@@ -1,8 +1,11 @@
 import React, { useState } from 'react'
+import { useSelector } from 'react-redux'
 
 import './Article.css'
 
 export default props => {
+  const darkMode = useSelector(store => store.themeMode.darkMode)
+
   const { id, title, imageURL, content, dateArticle, author } = props.article
   const [showFullArticle, setShowFullArticle] = useState(false)
 
@@ -24,10 +27,20 @@ export default props => {
             <p>{author.name}</p>
             <p>{dateArticle}</p>
           </div>
-          <h3 className='title-article'>{title}</h3>
+          <h3
+            className={`title-article ${
+              darkMode ? 'font-color-theme-dark-global' : ''
+            }`}
+          >
+            {title}
+          </h3>
         </div>
       </div>
-      <div className='content-article'>
+      <div
+        className={`content-article ${
+          darkMode ? 'border-color-theme-dark-global' : ''
+        }`}
+      >
         <div
           className='img-article'
           style={
@@ -41,7 +54,7 @@ export default props => {
         <p
           className={`content-text ${
             showFullArticle ? 'show-full-article' : ''
-          }`}
+          } ${darkMode ? 'background-theme-dark-global' : ''}`}
         >
           {content}
         </p>

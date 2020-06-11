@@ -1,8 +1,11 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 
 import './ArticlesUser.css'
 
 export default props => {
+  const darkMode = useSelector(store => store.themeMode.darkMode)
+
   const {
     articles,
     user,
@@ -36,7 +39,13 @@ export default props => {
                   {article.dateArticle}
                 </p>
               </div>
-              <p className='title-article-user-profile'>{article.title}</p>
+              <p
+                className={`title-article-user-profile ${
+                  darkMode ? 'font-color-theme-dark-global' : ''
+                }`}
+              >
+                {article.title}
+              </p>
             </div>
           </div>
           <div className='article-item-buttons'>

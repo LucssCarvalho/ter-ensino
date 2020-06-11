@@ -12,6 +12,7 @@ import Categories from './Categories/Categories'
 export default props => {
   const dispatch = useDispatch()
 
+  const darkMode = useSelector(store => store.themeMode.darkMode)
   const articles = useSelector(store => store.articles)
 
   const [filterSearch, setFilterSearch] = useState('')
@@ -56,7 +57,11 @@ export default props => {
   }
 
   return (
-    <section className='container-articles'>
+    <section
+      className={`container-articles ${
+        darkMode ? 'border-color-theme-dark-global' : ''
+      }`}
+    >
       <Categories
         categoryActive={filterCategory}
         categories={articles.categories}

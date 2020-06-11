@@ -1,9 +1,12 @@
 import React, { useState } from 'react'
+import { useSelector } from 'react-redux'
 import { FaChevronDown, FaChevronUp } from 'react-icons/fa'
 
 import './Categories.css'
 
 export default props => {
+  const darkMode = useSelector(store => store.themeMode.darkMode)
+
   const [dropActive, setDropActive] = useState(false)
   const { handleOnClick, categories, categoryActive } = props
 
@@ -13,6 +16,10 @@ export default props => {
         onClick={e => onClick(e.target.value)}
         className={`category-item ${
           active === category ? 'active-category' : ''
+        } ${
+          darkMode
+            ? 'background-theme-dark-global border-color-theme-dark-global'
+            : ''
         }`}
         value={category}
         key={index}

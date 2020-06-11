@@ -33,12 +33,12 @@
 }
 
 .menu-item:hover {
-  color: #00bc58;
+  color: #00bc58 !important;
   background-color: #07ee733d;
 }
 
 .select-item {
-  color: #00bc58;
+  color: #00bc58 !important;
 }
 
 .icon-menu {

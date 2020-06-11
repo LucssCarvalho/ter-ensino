@@ -16,13 +16,39 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background-color: #f4f4f4;
+  background-color: transparent;
 }
 ::-webkit-scrollbar {
   width: 6px;
-  background-color: #f4f4f4;
+  background-color: transparent;
 }
 ::-webkit-scrollbar-thumb {
   border-radius: 10px;
   background: #dad7d7;
+}
+
+.background-theme-dark-global {
+  background-color: #181818 !important;
+  color: #aaa !important;
+}
+
+.font-color-theme-dark-global {
+  color: #fff !important;
+}
+
+.font-color-input-and-textarea-theme-dark-global {
+  color: #aaa !important;
+}
+
+.background-edit-and-share-theme-dark-global {
+  background-color: #222222 !important;
+}
+
+.border-color-theme-dark-global {
+  border-color: #303030 !important;
+}
+
+.bar-search-theme-dark-global {
+  background-color: #000 !important;
+  color: #aaa;
 }

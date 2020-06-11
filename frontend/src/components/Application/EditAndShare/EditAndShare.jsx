@@ -12,6 +12,8 @@ import Profile from './Profile/Profile'
 export default props => {
   const dispatch = useDispatch()
 
+  const darkMode = useSelector(store => store.themeMode.darkMode)
+
   const user = useSelector(store => store.user)
   const articles = useSelector(store => store.articles)
 
@@ -22,15 +24,35 @@ export default props => {
 
   return (
     <section className='container-edit-and-share'>
-      <div className='edit-and-share'>
+      <div
+        className={`edit-and-share ${
+          darkMode ? 'background-edit-and-share-theme-dark-global' : ''
+        }`}
+      >
         {!user.profileMode && !articles.modeEdit && (
-          <h1 className='title-edit-and-share'>Compartilhe conhecimento:</h1>
+          <h1
+            className={`title-edit-and-share ${
+              darkMode ? 'font-color-theme-dark-global' : ''
+            }`}
+          >
+            Compartilhe conhecimento:
+          </h1>
         )}
         {!user.profileMode && articles.modeEdit && (
-          <h1 className='title-edit-and-share'>Editando ensinamentos:</h1>
+          <h1
+            className={`title-edit-and-share ${
+              darkMode ? 'font-color-theme-dark-global' : ''
+            }`}
+          >
+            Editando ensinamentos:
+          </h1>
         )}
         {user.profileMode && (
-          <h1 className='title-edit-and-share'>
+          <h1
+            className={`title-edit-and-share ${
+              darkMode ? 'font-color-theme-dark-global' : ''
+            }`}
+          >
             Editando informações do perfil:
           </h1>
         )}

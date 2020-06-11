@@ -18,6 +18,8 @@ import ArticlesUser from './ArticlesUser/ArticlesUser'
 export default props => {
   const dispatch = useDispatch()
 
+  const darkMode = useSelector(store => store.themeMode.darkMode)
+
   const user = useSelector(store => store.user)
   const articles = useSelector(store => store.articles)
 
@@ -68,7 +70,11 @@ export default props => {
   }
 
   return (
-    <section className='container-profile'>
+    <section
+      className={`container-profile ${
+        darkMode ? 'border-color-theme-dark-global' : ''
+      }`}
+    >
       <h1 className='header-profile-title'>{`Informações sobre ${user.data.name}`}</h1>
       <InformationsUser
         user={user}

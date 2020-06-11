@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { FiHome, FiUser } from 'react-icons/fi'
 
@@ -9,6 +9,8 @@ import { validateToken } from '../../../store/actions/actionsAuth'
 
 export default props => {
   const dispatch = useDispatch()
+
+  const darkMode = useSelector(store => store.themeMode.darkMode)
 
   const [itemSelect, setItemSelect] = useState(true)
 
@@ -27,7 +29,9 @@ export default props => {
       <div className='menu-app'>
         <h1 className='logo-terEnsino-menu'>#terEnsino</h1>
         <Link
-          className={`menu-item ${itemSelect ? 'select-item' : ''}`}
+          className={`menu-item ${itemSelect ? 'select-item' : ''} ${
+            darkMode ? 'font-color-theme-dark-global' : ''
+          }`}
           onClick={() => handleSelectItem(true)}
           to='/'
         >
@@ -35,7 +39,9 @@ export default props => {
           Início
         </Link>
         <Link
-          className={`menu-item ${!itemSelect ? 'select-item' : ''}`}
+          className={`menu-item ${!itemSelect ? 'select-item' : ''} ${
+            darkMode ? 'font-color-theme-dark-global' : ''
+          }`}
           onClick={() => handleSelectItem(false)}
           to='/profile'
         >
@@ -47,7 +53,13 @@ export default props => {
         </button>
 
         <div className='menu-development-credits'>
-          <p className='thank-you'>Obrigado por participar!</p>
+          <p
+            className={`thank-you ${
+              darkMode ? 'font-color-theme-dark-global' : ''
+            }`}
+          >
+            Obrigado por participar!
+          </p>
           <p className='development'>
             Desenvolvido com{' '}
             <span role='img' aria-label='sheep'>

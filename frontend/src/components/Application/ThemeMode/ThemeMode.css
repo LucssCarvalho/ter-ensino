@@ -1,0 +1,70 @@
+/* Estilo iOS */
+.switch__container {
+  display: flex;
+  align-items: center;
+  margin: 10px 0px;
+  margin-left: 10px;
+  position: absolute;
+  bottom: 0px;
+}
+
+.switch {
+  visibility: hidden;
+  position: absolute;
+  margin-left: -9999px;
+}
+
+.switch + label {
+  display: block;
+  position: relative;
+  cursor: pointer;
+  outline: none;
+  user-select: none;
+}
+
+/* Estilo Flat */
+.switch--flat + label {
+  padding: 2px;
+  width: 60px;
+  height: 30px;
+  background-color: #dddddd;
+  border-radius: 60px;
+  transition: background-color 0.4s;
+}
+.switch--flat + label:before,
+.switch--flat + label:after {
+  display: block;
+  position: absolute;
+  content: '';
+}
+.switch--flat + label:before {
+  top: 2px;
+  left: 2px;
+  bottom: 2px;
+  right: 2px;
+  background-color: #000;
+  border-radius: 60px;
+  transition: background-color 0.4s;
+}
+.switch--flat + label:after {
+  top: 4px;
+  left: 4px;
+  bottom: 4px;
+  width: 23px;
+  background-color: #dddddd;
+  border-radius: 52px;
+  transition: margin 0.4s, background-color 0.4s;
+}
+.switch--flat:checked + label {
+  background-color: #00bc58;
+}
+.switch--flat:checked + label:after {
+  margin-left: 29px;
+  background-color: #00bc58;
+}
+
+.emoji {
+  font-size: 24px;
+  margin-bottom: 3px;
+  margin-left: 10px;
+}

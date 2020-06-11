@@ -28,12 +28,12 @@
 }
 
 .category-item:hover {
-  color: #00bc58;
+  color: #00bc58 !important;
 }
 
 .active-category {
-  border-bottom: 3px solid #00bc58;
-  color: #00bc58;
+  border-bottom: 3px solid #00bc58 !important;
+  color: #00bc58 !important;
 }
 
 .icon-drop {
