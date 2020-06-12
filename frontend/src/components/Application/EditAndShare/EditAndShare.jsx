@@ -29,34 +29,36 @@ export default props => {
           darkMode ? 'background-edit-and-share-theme-dark-global' : ''
         }`}
       >
-        {!user.profileMode && !articles.modeEdit && (
-          <h1
-            className={`title-edit-and-share ${
-              darkMode ? 'font-color-theme-dark-global' : ''
-            }`}
-          >
-            Compartilhe conhecimento:
-          </h1>
-        )}
-        {!user.profileMode && articles.modeEdit && (
-          <h1
-            className={`title-edit-and-share ${
-              darkMode ? 'font-color-theme-dark-global' : ''
-            }`}
-          >
-            Editando ensinamentos:
-          </h1>
-        )}
-        {user.profileMode && (
-          <h1
-            className={`title-edit-and-share ${
-              darkMode ? 'font-color-theme-dark-global' : ''
-            }`}
-          >
-            Editando informações do perfil:
-          </h1>
-        )}
-        <User user={user.data} />
+        <div className='group-title-and-user'>
+          {!user.profileMode && !articles.modeEdit && (
+            <h1
+              className={`title-edit-and-share ${
+                darkMode ? 'font-color-theme-dark-global' : ''
+              }`}
+            >
+              Compartilhe conhecimento:
+            </h1>
+          )}
+          {!user.profileMode && articles.modeEdit && (
+            <h1
+              className={`title-edit-and-share ${
+                darkMode ? 'font-color-theme-dark-global' : ''
+              }`}
+            >
+              Editando ensinamentos:
+            </h1>
+          )}
+          {user.profileMode && (
+            <h1
+              className={`title-edit-and-share ${
+                darkMode ? 'font-color-theme-dark-global' : ''
+              }`}
+            >
+              Editando informações do perfil:
+            </h1>
+          )}
+          <User user={user.data} />
+        </div>
         {!user.profileMode && (
           <Article
             articles={articles}

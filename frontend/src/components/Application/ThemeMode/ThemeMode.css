@@ -68,3 +68,23 @@
   margin-bottom: 3px;
   margin-left: 10px;
 }
+
+@media (max-width: 1000px) {
+  .switch--flat + label {
+    width: 40px;
+    height: 25px;
+  }
+
+  .switch--flat + label:after {
+    width: 17px;
+  }
+
+  .switch--flat:checked + label:after {
+    margin-left: 15px;
+  }
+
+  .emoji {
+    font-size: 18px;
+    margin-left: 3px;
+  }
+}

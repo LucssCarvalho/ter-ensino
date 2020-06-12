@@ -11,3 +11,15 @@
   justify-content: space-between;
   margin-top: 10px;
 }
+
+@media (max-width: 851px) {
+  .container-edit-and-share-profile {
+    margin-top: 20px;
+  }
+}
+
+@media (max-width: 767px) {
+  .container-edit-and-share-profile {
+    margin-top: 0px;
+  }
+}

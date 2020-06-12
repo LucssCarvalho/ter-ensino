@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
 import { FiHome, FiUser } from 'react-icons/fi'
 
 import './Menu.css'
 
 import { validateToken } from '../../../store/actions/actionsAuth'
+
+import MenuItem from './MenuItem/MenuItem'
 
 export default props => {
   const dispatch = useDispatch()
@@ -28,26 +29,37 @@ export default props => {
     <section className='container-menu'>
       <div className='menu-app'>
         <h1 className='logo-terEnsino-menu'>#terEnsino</h1>
-        <Link
-          className={`menu-item ${itemSelect ? 'select-item' : ''} ${
-            darkMode ? 'font-color-theme-dark-global' : ''
-          }`}
-          onClick={() => handleSelectItem(true)}
-          to='/'
-        >
-          <FiHome className='icon-menu' size={40} />
-          Início
-        </Link>
-        <Link
-          className={`menu-item ${!itemSelect ? 'select-item' : ''} ${
-            darkMode ? 'font-color-theme-dark-global' : ''
-          }`}
-          onClick={() => handleSelectItem(false)}
-          to='/profile'
-        >
-          <FiUser className='icon-menu' size={40} />
-          Perfil
-        </Link>
+        <h1 className='logo-terEnsino-menu-mobile'>#tE</h1>
+        <MenuItem
+          url='/'
+          handleClick={() => handleSelectItem(true)}
+          classItem='menu-item'
+          label='Início'
+          Icon={FiHome}
+          itemSelect={itemSelect}
+        />
+        <MenuItem
+          url='/'
+          handleClick={() => handleSelectItem(true)}
+          classItem='menu-item-mobile'
+          Icon={FiHome}
+          itemSelect={itemSelect}
+        />
+        <MenuItem
+          url='/profile'
+          handleClick={() => handleSelectItem(false)}
+          classItem='menu-item'
+          label='Perfil'
+          Icon={FiUser}
+          itemSelect={!itemSelect}
+        />
+        <MenuItem
+          url='/profile'
+          handleClick={() => handleSelectItem(false)}
+          classItem='menu-item-mobile'
+          Icon={FiUser}
+          itemSelect={!itemSelect}
+        />
         <button onClick={handleLogout} className='button-logout'>
           Sair
         </button>
