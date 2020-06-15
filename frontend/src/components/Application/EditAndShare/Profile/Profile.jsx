@@ -11,6 +11,7 @@ import {
   updatedUser,
   profileMode,
 } from '../../../../store/actions/actionsUser'
+import { showEditAndShare } from '../../../../store/actions/actionsButtonFloat'
 
 import Input from '../Article/Input/Input'
 import Textarea from '../Article/Textarea/Textarea'
@@ -58,7 +59,11 @@ export default props => {
       const actionGetUser = getUser()
       dispatch(actionGetUser)
 
-      cancelEditProfile()
+      const actionProfileMode = profileMode(false)
+      dispatch(actionProfileMode)
+
+      const actionShowEditAndShare = showEditAndShare(false)
+      dispatch(actionShowEditAndShare)
 
       return toast.success('Perfil atualizado com sucesso!')
     }
@@ -66,9 +71,12 @@ export default props => {
     return
   }
 
-  const cancelEditProfile = () => {
+  const cancelEditProfile = async () => {
     const actionProfileMode = profileMode(false)
     dispatch(actionProfileMode)
+
+    const actionShowEditAndShare = showEditAndShare(false)
+    dispatch(actionShowEditAndShare)
 
     clearProfile()
   }

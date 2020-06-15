@@ -21,6 +21,30 @@
   margin: 15px 20px 0px 20px;
 }
 
+.show-container-edit-and-share {
+  visibility: visible !important;
+}
+
+.close-button-edit-and-share {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 3px;
+  right: 10px;
+  width: 40px;
+  height: 40px;
+  color: #000;
+  background-color: #00bc58;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: filter 0.5s ease;
+}
+
+.close-button-edit-and-share:hover {
+  filter: brightness(90%);
+}
+
 @media (max-width: 851px) {
   .container-edit-and-share {
     flex: none;
@@ -30,6 +54,8 @@
     position: absolute;
     width: 100%;
     background-color: #00000062;
+    visibility: hidden;
+    z-index: 2000;
   }
 
   .edit-and-share {

@@ -9,6 +9,7 @@ import './Application.css'
 
 import Routes from '../../config/routes'
 import ThemeMode from './ThemeMode/ThemeMode'
+import ButtonFloat from './ButtonFloat/ButtonFloat'
 
 export default props => {
   const darkMode = useSelector(store => store.themeMode.darkMode)
@@ -19,6 +20,7 @@ export default props => {
       }`}
     >
       <ThemeMode />
+      <ButtonFloat />
       <Routes />
       <ToastContainer />
     </div>

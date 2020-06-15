@@ -15,6 +15,7 @@ import {
   updatedArticles,
   setModeEditArticle,
 } from '../../../../store/actions/actionsArticles'
+import { showEditAndShare } from '../../../../store/actions/actionsButtonFloat'
 
 export default props => {
   const dispatch = useDispatch()
@@ -68,10 +69,7 @@ export default props => {
     const actionUpdated = updatedArticles()
     dispatch(actionUpdated)
 
-    const actionModeEdit = setModeEditArticle(false)
-    dispatch(actionModeEdit)
-
-    clearArticle()
+    cancelEditArticle()
 
     return toast.success(response.data.message)
   }
@@ -79,6 +77,9 @@ export default props => {
   const cancelEditArticle = () => {
     const actionModeEdit = setModeEditArticle(false)
     dispatch(actionModeEdit)
+
+    const actionShowEditAndShare = showEditAndShare(false)
+    dispatch(actionShowEditAndShare)
 
     clearArticle()
   }

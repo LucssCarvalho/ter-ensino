@@ -7,6 +7,7 @@ import './Profile.css'
 import api from '../../../services/api'
 
 import { getUser, profileMode } from '../../../store/actions/actionsUser'
+import { showEditAndShare } from '../../../store/actions/actionsButtonFloat'
 import {
   updatedArticles,
   setModeEditArticle,
@@ -34,11 +35,17 @@ export default props => {
   const editProfile = () => {
     const actionModeEditProfile = profileMode(true)
     dispatch(actionModeEditProfile)
+
+    const actionShowEditAndShare = showEditAndShare(true)
+    dispatch(actionShowEditAndShare)
   }
 
   const editArticle = id => {
     const actionModeEditArticle = setModeEditArticle(true, id)
     dispatch(actionModeEditArticle)
+
+    const actionShowEditAndShare = showEditAndShare(true)
+    dispatch(actionShowEditAndShare)
   }
 
   const deleteArticle = async id => {
