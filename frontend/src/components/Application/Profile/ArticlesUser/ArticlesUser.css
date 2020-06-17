@@ -4,6 +4,10 @@
   margin: 20px;
 }
 
+.profile-user-articles:nth-last-child(1n) {
+  padding-bottom: 100px;
+}
+
 .title-profile-user-article {
   font-weight: 400;
   color: #00bc58;
