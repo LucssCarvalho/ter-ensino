@@ -33,11 +33,8 @@ export default props => {
   }
 
   useEffect(() => {
-    handleSizeWidth()
-  }, [])
-
-  useEffect(() => {
     window.onresize = () => handleSizeWidth()
+    handleSizeWidth()
   })
 
   const handleSizeWidth = () => {
