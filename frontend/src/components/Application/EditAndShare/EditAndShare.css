@@ -61,6 +61,8 @@
   .edit-and-share {
     flex-direction: row;
     width: 100%;
+    height: 95%;
+    overflow: scroll;
   }
 }
 

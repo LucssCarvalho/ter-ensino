@@ -32,10 +32,6 @@ export default props => {
   }
 
   useEffect(() => {
-    handleSizeWidth()
-  }, [])
-
-  useEffect(() => {
     window.onresize = () => handleSizeWidth()
   })
 
@@ -50,6 +46,11 @@ export default props => {
     } else {
       setCategoryItem2(false)
     }
+  }
+
+  const handleMenuDrop = () => {
+    handleSizeWidth()
+    setDropActive(!dropActive)
   }
 
   return (
@@ -87,15 +88,11 @@ export default props => {
         <FaChevronDown
           className='icon-drop'
           size={21}
-          onClick={() => setDropActive(!dropActive)}
+          onClick={handleMenuDrop}
         />
       )}
       {dropActive && (
-        <FaChevronUp
-          className='icon-drop'
-          size={21}
-          onClick={() => setDropActive(!dropActive)}
-        />
+        <FaChevronUp className='icon-drop' size={21} onClick={handleMenuDrop} />
       )}
       <div className='group-itens-categories'>
         {renderCategories(categories, handleOnClick, categoryActive)}
