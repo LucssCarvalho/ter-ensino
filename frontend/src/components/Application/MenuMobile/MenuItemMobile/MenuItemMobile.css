@@ -1,0 +1,23 @@
+.menu-item-mobile-2 {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: #000;
+  font-size: 23px;
+  font-weight: 400;
+  margin-right: 10px;
+  padding: 5px 0px;
+  transition: all 0.3s ease;
+  border-radius: 24px;
+}
+
+.menu-item-mobile-2:hover {
+  color: #00bc58 !important;
+  background-color: #07ee733d;
+}
+
+.select-item-mobile {
+  color: #00bc58 !important;
+}

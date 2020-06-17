@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { FaChevronDown, FaChevronUp } from 'react-icons/fa'
 
@@ -8,6 +8,8 @@ export default props => {
   const darkMode = useSelector(store => store.themeMode.darkMode)
 
   const [dropActive, setDropActive] = useState(false)
+  const [categoryItem3, setCategoryItem3] = useState(false)
+  const [categoryItem2, setCategoryItem2] = useState(false)
   const { handleOnClick, categories, categoryActive } = props
 
   const renderCategories = (categories, onClick, active) => {
@@ -29,16 +31,53 @@ export default props => {
     ))
   }
 
+  useEffect(() => {
+    handleSizeWidth()
+  }, [])
+
+  useEffect(() => {
+    window.onresize = () => handleSizeWidth()
+  })
+
+  const handleSizeWidth = () => {
+    if (window.innerWidth < 599 && window.innerWidth > 400) {
+      setCategoryItem3(true)
+    } else {
+      setCategoryItem3(false)
+    }
+    if (window.innerWidth < 400) {
+      setCategoryItem2(true)
+    } else {
+      setCategoryItem2(false)
+    }
+  }
+
   return (
     <div
       className={'container-categories'}
       style={
-        dropActive
+        dropActive && !categoryItem3 && !categoryItem2
           ? {
               height: `${
                 ((categories.length * 50) / 4) % 2 === 0
                   ? (categories.length * 50) / 4
                   : (categories.length * 50) / 4 + 50
+              }px`,
+            }
+          : dropActive && categoryItem3 && !categoryItem2
+          ? {
+              height: `${
+                ((categories.length * 50) / 3) % 2 === 0
+                  ? (categories.length * 50) / 3
+                  : (categories.length * 50) / 3 + 20
+              }px`,
+            }
+          : dropActive && !categoryItem3 && categoryItem2
+          ? {
+              height: `${
+                ((categories.length * 50) / 2) % 2 === 0
+                  ? (categories.length * 50) / 2
+                  : (categories.length * 50) / 2 + 50
               }px`,
             }
           : {}

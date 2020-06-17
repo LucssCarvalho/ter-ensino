@@ -19,7 +19,8 @@
   margin-left: 0px;
 }
 
-.menu-item:hover {
+.menu-item:hover,
+.menu-item-mobile:hover {
   color: #00bc58 !important;
   background-color: #07ee733d;
 }

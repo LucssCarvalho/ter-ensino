@@ -87,3 +87,16 @@
 .delete-button-article:hover {
   filter: brightness(80%);
 }
+
+@media (max-width: 370px) {
+  .title-article-user-profile {
+    font-size: 17px;
+  }
+  .author-and-date-article {
+    font-size: 13px;
+  }
+
+  .date-article-profile-user {
+    margin-left: 10px;
+  }
+}

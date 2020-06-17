@@ -88,3 +88,11 @@
     margin-left: 3px;
   }
 }
+
+@media (max-width: 499px) {
+  .switch__container {
+    bottom: 80px;
+    left: 10px;
+    z-index: 1003;
+  }
+}

@@ -43,3 +43,14 @@
   color: #657786;
   cursor: pointer;
 }
+
+@media (max-width: 599px) {
+  .category-item {
+    width: 33%;
+  }
+}
+@media (max-width: 400px) {
+  .category-item {
+    width: 50%;
+  }
+}

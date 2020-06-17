@@ -31,3 +31,9 @@
     display: flex;
   }
 }
+
+@media (max-width: 499px) {
+  .container_button_float {
+    bottom: 70px;
+  }
+}

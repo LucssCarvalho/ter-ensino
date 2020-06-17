@@ -86,3 +86,9 @@
     display: block;
   }
 }
+
+@media (max-width: 499px) {
+  .container-menu {
+    display: none;
+  }
+}
