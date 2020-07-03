@@ -24,4 +24,4 @@ flutter:
 
   assets:
     - assets/images/background.jpg
-    - assets/images/image.jpg
+    - assets/images/img_default_profile.jpg
