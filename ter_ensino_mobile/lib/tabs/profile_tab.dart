@@ -13,13 +13,17 @@ class _ProfileTabState extends State<ProfileTab> {
       body: Container(
           alignment: Alignment.center,
           child: Column(
-            children: <Widget>[banner(context), _bioProfile(), skills()],
+            children: <Widget>[
+              _userLabel(context),
+              _bioProfile(),
+              _labelSkills(),
+            ],
           )),
     );
   }
 }
 
-Widget banner(context) {
+Widget _userLabel(context) {
   return Stack(
     children: <Widget>[
       Container(
@@ -52,7 +56,7 @@ Widget _bioProfile() {
         child: Row(
           children: <Widget>[
             Text(
-              'About Lucas',
+              'Sobre',
               style: TextStyle(
                 color: Colors.grey[50],
                 fontSize: 25,
@@ -80,7 +84,7 @@ Widget _bioProfile() {
   );
 }
 
-Widget skills() {
+Widget _labelSkills() {
   return Column(
     children: <Widget>[
       Padding(
@@ -88,7 +92,7 @@ Widget skills() {
         child: Row(
           children: <Widget>[
             Text(
-              'Skills',
+              'Habilidades',
               style: TextStyle(
                 color: Colors.grey[50],
                 fontSize: 25,
@@ -102,17 +106,17 @@ Widget skills() {
       Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          chipLabel('Dart', Colors.greenAccent[700]),
-          chipLabel('Flutter', Colors.greenAccent[700]),
-          chipLabel('React', Colors.greenAccent[400]),
+          _chipLabel('Dart', Colors.greenAccent[700]),
+          _chipLabel('Flutter', Colors.greenAccent[700]),
+          _chipLabel('React', Colors.greenAccent[400]),
         ],
       ),
       Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          chipLabel('JavaScript', Colors.greenAccent[400]),
-          chipLabel('HTML + CSS', Colors.greenAccent[400]),
-          chipLabel('C#', Colors.greenAccent[100]),
+          _chipLabel('JavaScript', Colors.greenAccent[400]),
+          _chipLabel('HTML + CSS', Colors.greenAccent[400]),
+          _chipLabel('C#', Colors.greenAccent[100]),
         ],
       ),
       Column(
@@ -122,7 +126,7 @@ Widget skills() {
   );
 }
 
-Widget chipLabel(String labelName, Color colorData) {
+Widget _chipLabel(String labelName, Color colorData) {
   return Padding(
     padding: const EdgeInsets.all(8.0),
     child: Chip(
@@ -145,7 +149,7 @@ Widget _imageProfile() {
           shape: BoxShape.circle,
           image: new DecorationImage(
             fit: BoxFit.fill,
-            image: AssetImage('assets/images/image.jpg'),
+            image: AssetImage('assets/images/img_default_profile.jpg'),
           ),
         ),
       ),
