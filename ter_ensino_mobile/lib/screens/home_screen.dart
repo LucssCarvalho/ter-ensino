@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:ter_ensino_mobile/tabs/create_post_tab.dart';
 import 'package:ter_ensino_mobile/tabs/home_tab.dart';
+import 'package:ter_ensino_mobile/tabs/profile_tab.dart';
+import 'package:ter_ensino_mobile/tabs/settings_tab.dart';
 import 'package:ter_ensino_mobile/widgets/custom_drawer.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -60,62 +62,19 @@ class HomeScreen extends StatelessWidget {
         ),
         Scaffold(
           appBar: AppBar(
+            backgroundColor: Colors.black,
             title: Text(
-              'Carteira',
+              'Perfil',
               style: TextStyle(color: Colors.white),
             ),
             centerTitle: true,
           ),
           drawer: CustomDrawer(_pageController),
-          body: HomeTab(),
+          body: ProfileTab(),
         ),
         Scaffold(
           appBar: AppBar(
-            title: Text(
-              'Meus Pedidos',
-              style: TextStyle(color: Colors.white),
-            ),
-            centerTitle: true,
-          ),
-          drawer: CustomDrawer(_pageController),
-          body: HomeTab(),
-        ),
-        Scaffold(
-          appBar: AppBar(
-            title: Text(
-              'Meus Pedidos',
-              style: TextStyle(color: Colors.white),
-            ),
-            centerTitle: true,
-          ),
-          drawer: CustomDrawer(_pageController),
-          body: HomeTab(),
-        ),
-        Scaffold(
-          appBar: AppBar(
-            title: Text(
-              'Opções de Administrador',
-              style: TextStyle(color: Colors.white),
-            ),
-            centerTitle: true,
-          ),
-          drawer: CustomDrawer(_pageController),
-          body: HomeTab(),
-        ),
-        Scaffold(
-          body: HomeTab(),
-          appBar: AppBar(
-            title: Text(
-              'Perguntas Frequentes',
-              style: TextStyle(color: Colors.white),
-            ),
-            centerTitle: true,
-          ),
-          drawer: CustomDrawer(_pageController),
-        ),
-        Scaffold(
-          body: HomeTab(),
-          appBar: AppBar(
+            backgroundColor: Colors.black,
             title: Text(
               'Configurações',
               style: TextStyle(color: Colors.white),
@@ -123,17 +82,7 @@ class HomeScreen extends StatelessWidget {
             centerTitle: true,
           ),
           drawer: CustomDrawer(_pageController),
-        ),
-        Scaffold(
-          body: HomeTab(),
-          appBar: AppBar(
-            title: Text(
-              'Termo de Serviço',
-              style: TextStyle(color: Colors.white),
-            ),
-            centerTitle: true,
-          ),
-          drawer: CustomDrawer(_pageController),
+          body: SettingsTab(),
         ),
       ],
     );
