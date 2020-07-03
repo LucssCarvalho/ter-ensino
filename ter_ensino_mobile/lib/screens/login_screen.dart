@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ter_ensino_mobile/screens/home_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -74,7 +75,13 @@ class _LoginScreenState extends State<LoginScreen> {
             Padding(
               padding: const EdgeInsets.only(top: 20.0, bottom: 20),
               child: MaterialButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => HomeScreen(),
+                    ),
+                  );
+                },
                 child: Container(
                   decoration: BoxDecoration(
                       color: Colors.green,
