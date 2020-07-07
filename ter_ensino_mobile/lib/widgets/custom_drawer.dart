@@ -2,10 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:ter_ensino_mobile/tiles/drawer_tile.dart';
 
 class CustomDrawer extends StatelessWidget {
-  final PageController pageController;
-
-  CustomDrawer(this.pageController);
-
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -63,10 +59,10 @@ class CustomDrawer extends StatelessWidget {
                 children: <Widget>[
                   Column(
                     children: <Widget>[
-                      DrawerTile(Icons.home, "Início", pageController, 0),
-                      DrawerTile(Icons.person, "Perfil", pageController, 1),
+                      DrawerTile(Icons.home, "Início", '/homeScreen'),
+                      DrawerTile(Icons.person, "Perfil", '/profileScreen'),
                       DrawerTile(
-                          Icons.settings, "Configurações", pageController, 2),
+                          Icons.settings, "Configurações", '/settingsScreen'),
                     ],
                   ),
                 ],
