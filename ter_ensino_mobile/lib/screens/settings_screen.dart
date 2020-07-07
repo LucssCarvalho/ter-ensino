@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:ter_ensino_mobile/screens/login_screen.dart';
 import 'package:ter_ensino_mobile/tiles/settings_tile.dart';
 
-class SettingsTab extends StatefulWidget {
+class SettingsScreen extends StatefulWidget {
   @override
-  _SettingsTabState createState() => _SettingsTabState();
+  _SettingsScreenState createState() => _SettingsScreenState();
 }
 
-class _SettingsTabState extends State<SettingsTab> {
+class _SettingsScreenState extends State<SettingsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
