@@ -1,19 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:ter_ensino_mobile/widgets/custom_drawer.dart';
 
-class CreatePostTab extends StatefulWidget {
-  PageController pageController;
-
-  CreatePostTab(this.pageController);
+class CreatePostScreen extends StatefulWidget {
   @override
-  _CreatePostTabState createState() => _CreatePostTabState();
+  _CreatePostScreenState createState() => _CreatePostScreenState();
 }
 
-class _CreatePostTabState extends State<CreatePostTab> {
+class _CreatePostScreenState extends State<CreatePostScreen> {
+  @override
+  void dispose() {
+    super.dispose();
+    Navigator.pop(context);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: CustomDrawer(widget.pageController),
+      drawer: CustomDrawer(),
       appBar: AppBar(
         actions: <Widget>[
           IconButton(
@@ -132,6 +135,35 @@ class _CreatePostTabState extends State<CreatePostTab> {
                                 ),
                               ),
                             ),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: MaterialButton(
+                                  onPressed: () {},
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                        color: Colors.green,
+                                        borderRadius:
+                                            BorderRadius.circular(100)),
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 60.0,
+                                          right: 60.0,
+                                          top: 8.0,
+                                          bottom: 8.0),
+                                      child: Text(
+                                        'Compartilhar',
+                                        style: TextStyle(
+                                            color: Colors.white, fontSize: 20),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                         ],
                       ),

@@ -4,7 +4,6 @@ import 'package:ter_ensino_mobile/screens/home_screen.dart';
 import 'package:ter_ensino_mobile/screens/login_screen.dart';
 import 'package:ter_ensino_mobile/screens/profile_screen.dart';
 import 'package:ter_ensino_mobile/screens/settings_screen.dart';
-import 'package:ter_ensino_mobile/tabs/settings_tab.dart';
 
 import 'domain/user/user_model.dart';
 
