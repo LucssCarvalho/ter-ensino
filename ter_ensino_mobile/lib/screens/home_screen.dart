@@ -15,6 +15,7 @@ class _HomeScreenState extends State<HomeScreen> {
         body: DefaultTabController(
           length: 3,
           child: Scaffold(
+            drawer: CustomDrawer(),
             appBar: AppBar(
               actions: <Widget>[
                 IconButton(
