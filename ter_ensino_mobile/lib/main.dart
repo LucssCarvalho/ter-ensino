@@ -1,21 +1,51 @@
 import 'package:flutter/material.dart';
+import 'package:scoped_model/scoped_model.dart';
+import 'package:ter_ensino_mobile/screens/home_screen.dart';
 import 'package:ter_ensino_mobile/screens/login_screen.dart';
+import 'package:ter_ensino_mobile/screens/profile_screen.dart';
+import 'package:ter_ensino_mobile/tabs/settings_tab.dart';
+
+import 'domain/user/user_model.dart';
 
 void main() {
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.green,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
+    return ScopedModel<UserModel>(
+      model: UserModel(),
+      child: MaterialApp(
+        title: 'TerEnsino',
+        theme: ThemeData(
+          primarySwatch: Colors.green,
+        ),
+        debugShowCheckedModeBanner: false,
+        initialRoute: '/loginScreen',
+        navigatorObservers: [],
+        routes: {
+          '/': (context) => ScopedModelDescendant<UserModel>(
+                builder: (context, child, model) {
+                  return LoginScreen();
+                },
+              ),
+          '/home': (context) => ScopedModelDescendant<UserModel>(
+                builder: (context, child, model) {
+                  return _getNextScreen(HomeScreen(), model);
+                },
+              ),
+          '/profile': (context) => ScopedModelDescendant<UserModel>(
+                builder: (context, child, model) {
+                  return _getNextScreen(ProfileScreen(), model);
+                },
+              ),
+        },
       ),
-      home: LoginScreen(),
     );
+  }
+
+  Widget _getNextScreen(Widget screen, UserModel userModel) {
+    return userModel.isLogged ? screen : LoginScreen();
   }
 }
